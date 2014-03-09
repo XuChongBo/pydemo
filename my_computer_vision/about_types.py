@@ -1,6 +1,3 @@
-"""
-    open an image file and show it.
-"""
 from PIL import Image
 from pylab import imshow,show,axis,array
 

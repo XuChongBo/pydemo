@@ -1,6 +1,7 @@
 from PIL import Image
-from pylab import imshow,show,axis,contour,axis, figure,gray,hist
-from pylab import array
+
+from pylab import imshow,axis,contour,axis, figure,gray,hist,show
+from numpy import array
 
 # load the image file
 img = Image.open('../../data/cv_data/empire.jpg')

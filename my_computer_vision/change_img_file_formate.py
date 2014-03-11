@@ -1,4 +1,9 @@
 from PIL import Image 
+import os
 
-img = Image.open('../../data/cv_data/empire.jpg')
+in_file = '../../data/cv_data/empire.jpg'
+img = Image.open(in_file)
+
+#print os.path.splitext(in_file)[0]+'.png'
+
 img.save('./test.png')

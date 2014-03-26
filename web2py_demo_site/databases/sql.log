@@ -1,9 +1,0 @@
-timestamp: 2014-03-26T20:45:20.497277
-CREATE TABLE register(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name CHAR(512),
-    last_name CHAR(512),
-    email CHAR(512) UNIQUE,
-    email_validate CHAR(512)
-);
-success!

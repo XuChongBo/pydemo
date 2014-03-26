@@ -4,3 +4,19 @@
 *.png
 
 *.png
+
+web2py_demo_site/errors/127.0.0.1.2014-03-26.21-22-21.856b9a9b-742f-4512-9556-1eb51bd96b63
+
+web2py_demo_site/errors/127.0.0.1.2014-03-27.00-59-19.81119640-05f7-4bc9-aa08-7b0806b53af1
+
+web2py_demo_site/sessions/127.0.0.1-9ca2b346-a6b3-4057-b128-12b9ac11a291
+
+*.log
+
+*.table
+
+*.sqlite
+
+*.db
+
+*.lock

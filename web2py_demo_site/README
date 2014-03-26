@@ -1,0 +1,5 @@
+demo
+
+when a field is submitted, it’s filtered through the accepts method from the Controller, according to the requirements specified in the database schema (IS_NOT_EMPTY). If the field meets the requirement (accepts returns True), it’s passed to form.vars; if not (accepts returns False), an error populates, which is then stored in form.errors.
+
+refer to http://mherman.org/blog/2012/12/06/crash-course-in-web2py-part-3-form-validation/

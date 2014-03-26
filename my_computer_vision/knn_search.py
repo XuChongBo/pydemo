@@ -15,17 +15,18 @@ def knn_search(x, D, K):
     # return the indexes of K nearest neighbours
     return idx[:K]
 
-#if __name__=='__main___':
-# knn_search test
-data = random.rand(200,2) # random dataset. everay point has 2 dimensions.
-x = random.rand(1,2) # query point.  
+if __name__=='__main__':
+    # knn_search test
+    data = random.rand(200,2) # random dataset. everay point has 2 dimensions.
+    x = random.rand(1,2) # query point.  
 
-# performing the search
-neig_idx = knn_search(x,data,10)
+    # performing the search
+    neig_idx = knn_search(x,data,10)
 
-# plotting the data and the input point
-plot(data[:,0],data[:,1],'ob',x[0,0],x[0,1],'or')
-# highlighting the neighbours
-plot(data[neig_idx,0],data[neig_idx,1],'o',
-markerfacecolor='None',markersize=15,markeredgewidth=1)
-show()
+    # plotting the data and the input point
+    plot(data[:,0],data[:,1],'ob',x[0,0],x[0,1],'or')
+    # highlighting the neighbours
+    plot(data[neig_idx,0],data[neig_idx,1],'o',
+    markerfacecolor='None',markersize=15,markeredgewidth=1)
+    show()
+

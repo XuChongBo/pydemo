@@ -18,7 +18,7 @@ def caculate_dist_matrix(point_2d_array):
 dist_matrix = None
 def knn_search(p_idx, point_2d_array, K):
     """ 
-        find K nearest neighbours of the point with index p_idx  in point list
+        find K nearest neighbours(include the center point) of the point with index p_idx  in point list
         return the neighgbours' index list
     """
     global dist_matrix
@@ -33,8 +33,10 @@ def knn_search(p_idx, point_2d_array, K):
     # sorting
     sorted_idx = np.argsort(dist_list) 
 
-    # return the indexes of K nearest neighbours
-    return sorted_idx[:K]
+    # return the indexes of K nearest neighbours including center point.   
+    return sorted_idx[:K]   
+    # to excluding center point.  use 
+    #return sorted_idx[1:K+1]
 
 p_2d_array=np.array([(4,6),(2,3),(10,4),(8,3),(11,3),(7,4)])
 m = caculate_dist_matrix(p_2d_array)

@@ -13,3 +13,24 @@ def show():
 
 def download():
     return response.download(request, db)
+
+def upload_and_show_all():
+    form = SQLFORM(db.image)
+    if form.accepts(request,session):
+        response.flash = 'Thanks! The form has been submitted.'
+    elif form.errors:
+        response.flash = 'Please correct the error(s).'
+    records = db().select(db.image.ALL)
+    return dict(form=form, records=records)
+
+
+def upload_imagex():
+    form = SQLFORM(db.image)
+    if form.accepts(request,session):
+        response.flash = 'Thanks! The form has been submitted.'
+        #accepted values
+        form.vars
+    elif form.errors:
+        response.flash = 'Please correct the error(s).'
+    records = db().select(db.image.ALL)
+    return dict(form=form, records=records)

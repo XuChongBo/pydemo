@@ -11,6 +11,10 @@ def index():
     links += ["show_file/show_txt_file/test.txt"]
     links += ["show_file/show_image_file/test.png"]
     links += ["image_blog/index"]
+    links += ["image_blog/upload_and_show_all"]
+    links += ["upload_resize_image/upload_show"]
+    links += ["upload_resize_image/upload_resize"]
+    links += ["do_matplot"]
     for i in links:
         link_list.append((i, base_url+i))
     return dict(link_list=link_list)

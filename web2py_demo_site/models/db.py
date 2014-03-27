@@ -2,6 +2,9 @@
 ## none otherwise. a pattern can be 'controller/function.extension'
 response.generic_patterns = ['*'] if request.is_local else []
 
+from gluon.custom_import import track_changes
+track_changes(True)
+
 #db = DAL('sqlite://webform.sqlite')
 #db.define_table('register',
 #        Field('first_name', requires=IS_NOT_EMPTY()),

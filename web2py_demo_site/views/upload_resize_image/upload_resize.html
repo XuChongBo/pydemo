@@ -4,17 +4,6 @@
 {{=form}}
 <h2>form.errors:</h2>
 {{=BEAUTIFY(form.errors)}}
-<table> 
-    <tr> <th>name</th> <th>image</th> </tr> 
-    {{for record in records:}} 
-    {{filename, file = db.image.file.retrieve(record.file)}} 
-        <tr> 
-            <td> 
-                {{=filename}} 
-            </td> 
-            <td> 
-            {{=IMG(_src=URL(r=request, c='default', f='download', args=[record.file]))}}
-            </td> 
-        </tr> 
-    {{pass}} 
-</table>
+
+<h2>Resize image:</h2>
+{{=img}} 

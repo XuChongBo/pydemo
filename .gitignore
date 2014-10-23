@@ -23,3 +23,25 @@ web2py_demo_site/sessions/
 *.lock
 
 *.4c4e15cc-0b1a-4e2e-af1d-d20836182aa5
+
+ltw/score.txt
+
+ltw/c.txt
+
+ltw/a.txt
+
+*.swp
+
+ltw/emma.txt
+
+ltw/score.txt.train
+
+ltw/task1/entity.json
+
+ltw/task1/test.txt
+
+ltw/task1/train.txt
+
+ltw/text_t.py
+
+*.py~

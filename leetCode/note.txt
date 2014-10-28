@@ -2,3 +2,10 @@
 2014.10.23 9:30 
     atoi        9:30 - 22:30 ?? 
     reverse integer    22:30--22:47
+    triangle           22:45--23:15   not finished
+
+2014.10.27 
+    triangle           22:00--22:20   finished
+    singleNum           22:30--23:00
+    maxDepthOfBT       23:05--23:15
+ 

@@ -8,4 +8,7 @@
     triangle           22:00--22:20   finished
     singleNum           22:30--23:00
     maxDepthOfBT       23:05--23:15
+
+2014.10.28 
+    swqpNodePairs      20:40 - 21:15
  

@@ -18,3 +18,5 @@ axis('off')
 
 # starts the figure GUI and raises the figure windows
 show()
+
+print "aaa"

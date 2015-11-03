@@ -21,3 +21,10 @@ imshow(im3)   # Warning,  when im3 has float type, it sometime can not be show. 
 #imshow(zeros(im2.shape)+190)
 
 show()
+
+
+# another way
+import matplotlib.pyplot as plt
+print type(array_data), array_data.shape, array_data.size, array_data.ndim, array_data.dtype, array_data.itemsize, array_data.strides
+plt.imshow(array_data)
+plt.show()

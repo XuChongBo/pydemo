@@ -1,10 +1,12 @@
 
 *.pyc
-
+*.eps
+*.pdf
+*.svg
 *.png
 
 *.png
-
+.ipynb_checkpoints
 
 web2py_demo_site/errors/
 web2py_demo_site/uploads/

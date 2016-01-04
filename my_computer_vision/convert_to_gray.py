@@ -22,3 +22,12 @@ imshow(img_gray)
 
 # starts the figure GUI and raises the figure windows
 show()
+
+
+##
+# for opencv image
+# b = im[:,:,0]
+# g = im[:,:,1]
+# r = im[:,:,2]
+#im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+#im_gray = ( r*0.3 + 0.59*g + 0.11*b ).astype(np.uint8)

@@ -9,10 +9,10 @@ print type(img), img.shape, img.dtype
 
 cv2.imshow("Example1", img)
 cv2.waitKey(0)
-
-img = cv2.imread('demo2.jpg')
-#img = cv2.imread(sys.argv[1])
+### method 1
+img = cv2.resize(img,(500,400))
+### method 2
+img = cv2.resize(img,(0,0),fx=0.5,fy=0.5)
 print type(img), img.shape, img.dtype
-
 cv2.imshow("Example1", img)
 cv2.waitKey(0)

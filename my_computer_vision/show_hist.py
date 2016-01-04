@@ -40,3 +40,4 @@ hist(array(img_gray).flatten(),10)
 
 show()
 
+

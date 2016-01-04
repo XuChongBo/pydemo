@@ -9,7 +9,7 @@ from pylab import imshow,show,axis
 
 img = Image.open(sys.argv[1])
 #img = Image.open('../../data/cv_data/empire.jpg')
-
+img.show()
 # plot the image
 imshow(img)
 
@@ -20,3 +20,13 @@ axis('off')
 show()
 
 print "aaa"
+
+############## method 2 ===========
+import matplotlib.pyplot as plt
+img = Image.open(sys.argv[1])
+plt.imshow(img,cmap=plt.cm.gray)
+plt.show()
+
+########## method 3 =====
+cv2.imshow("x",np.array(img))
+cv2.waitKey(-1)

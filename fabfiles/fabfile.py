@@ -1,127 +1,75 @@
 #!/usr/bin/env python
 # -*- encoding:utf-8 -*-
-from fabric.api import *
-from fabric.colors import green, red, yellow, blue
-from fabric.contrib.console import confirm
-from fabric.contrib.files import exists
+
+# Author: XuChongBo
+# Created: 2016-4-6
+
+from fabric.api import run, local, lcd, env, task, cd, hosts
 
 """
-usage:  fab deploy  OR  fab -f fabfile.py deploy
-
+使用Fabric，你可以管理一系列host的SSH连接（包括主机名，用户，密码），定义一系列的任务函数，然后灵活的指定在哪些host上执行哪些任务。
+除了这里演示的, Fabric还包括大量的功能，比如Role的定义，远程交互及异常处理，并发执行，文件操作等.
+不局限于命令行方式，可以在你的应用中调用Fabric.
 """
 
-#env.hosts = ['10.166.138.153:36000', '10.177.151.158:36000']
-env.hosts = ['120.132.59.209:666']
+"""
+host参数优先级
+1.单个任务，命令行主机列表(fab mytask:host=host1)会覆盖其他一切设置    
+2.单个任务，装饰器指定主机列表 (@hosts('host1'))会覆盖 env 设置    
+3.Fabfile 中全局 ENV 变量设置 (env.hosts = ['host1']) 会覆盖命令行全局指定主机列表    
+4.命令行全局指定主机列表 (--hosts=host1)仅初始化 ENV 变量，在其他三种情况都没有设置的话，使用它指定的值。
+"""
+
+"""
+host字符串采用这种格式：username@hostname:port
+如果server密码不同，还可以在env.passwords中设置(host,password）对，为每个server设置单独的ssh密码。
+env.hosts = ['180.150.190.50:666']
+同密码一样时，你也可以在env.user中指定一个默认的用户。如果都没有指定，执行fab命令时会提示你输入密码。
 env.user = "xucb"
-#env.password = 'cmcom@secu'
+"""
 
-DEPLOY_PATH = '/data/xucb/'
-PROJECT_NAME = 'hanzi_machine'
-#目标机器上的运行目录
-PROJECT_PATH = '%s%s' % (DEPLOY_PATH, PROJECT_NAME)
-LOGS_PATH = '%s%s' % (DEPLOY_PATH, 'logs')
-DATA_PATH = '%s%s' % (DEPLOY_PATH, 'data')
+"""
+USAGE:
+ fab -l 
+ fab -H localhost,ocr1 test 
+ fab hello:name=xx
+ fab test2 -H 180.150.190.50:666
+ fab test2 --host=180.150.190.50:666,180.150.190.52:666
+ fab test2 hello -H 180.150.190.50:666
+ fab test2 hello --host=180.150.190.50:666,180.150.190.52:666
+ fab test2:hosts="180.150.190.52:666;180.150.190.50:666"
+ fab hello:hosts="180.150.190.50:666" test2:hosts="180.150.190.52:666;180.150.190.50:666"
+"""
 
+def set_hosts():
+    env.hosts = ['host1', 'host2']
 
-def mkdir_safe(path, as_root=False):
-    mkdir_command = "mkdir {}".format(path)
-    if not exists(path):
-        if as_root:
-            sudo(mkdir_command)
-        else:
-            run(mkdir_command)
+@task
+def test1():
+    with lcd('/tmp'):
+        local('ls')
 
-
-
-# def rm(prefix=None, path=None):
-#     rm_command = "rm -rf {}".format(path)
-#     if exists(path):
-#         if sudo:
-#             sudo(rm_command)
-#         else:
-#             run(rm_command)
-    
-
-# 初始次发布
-# def install():
-#     """
-#     处理proto协议，生成辅助代码
-#     protoc --python_out=. session.proto
-#     在脚本./produce_pb.sh 中
-
-#     #阻止其它用户访问sessionserver
-#     iptables -A INPUT -i eth1 -p tcp --destination-port 8091 -j DROP
-#     """
-#     #创建运行目录
-#     if 'yes'==prompt('create sessionserver path %s ? ' % PROJECT_PATH, default='yes|skip', validate=r'(yes|skip)'):
-#         run('mkdir %s' % PROJECT_PATH)
-#     #创建sessionserver用户
-#     if 'yes'==prompt('create db account?', default='yes|skip', validate=r'(yes|skip)'):
-#         run("""mysql -uroot -e "GRANT SELECT ON cmcom_db.* TO 'sessionserver'@'%' identified by 'sessionserver@secu'; flush privileges;" """)
-#     with cd(PROJECT_PATH):
-#         #创建日志目录
-#         if 'yes'==prompt('create logdir?', default='yes|skip', validate=r'(yes|skip)'):
-#             run('mkdir ./log')
-#      #把本地代码发布上去   
-#     if 'yes'==prompt('upgrade sessionserver?', default='yes|skip', validate=r'(yes|skip)'):
-#         upgrade()
-
-image_name = 'docker.zuoyetong.com.cn:8888/hanzi_machine_appserver:1.0-20160201'
-dev_compose_yml = 'dev-compose.yml'
-
-def build():
-    local("docker build -t  %s ./appserver" % image_name)
-    local("docker images | grep appserver")
-
-def start():
-    local('docker-compose -f %s up -d' % dev_compose_yml)
-
-def stop():
-    local('docker-compose -f %s stop' % dev_compose_yml)
-
-def restart():
-    local('docker-compose -f %s restart' % dev_compose_yml)
+@task
+def hello(name="world"):
+    print("Hello %s!" % name)
+    doSomething()
 
 
-# 更新文件，并重启
-def deploy():
-    """ 
-    发布更新  目标机器153或158
-    """
+@task
+def test2():
+    with cd('/tmp'):
+        run('ls')
 
+@task
+def test3():
+    local('ls')
+    run('pwd')
 
-    # 创建部署文件夹
-    mkdir_safe(path=PROJECT_PATH)
-    mkdir_safe(path=LOGS_PATH)
-    mkdir_safe(path=DATA_PATH)
-    # 
-    with cd(PROJECT_PATH):
-        #打包本地代码,放到上层目录
-        print green("Start to Deploy the Project")
-        print green("="*40)
-        print blue("do tar")
-        print blue("*"*40)
-        local('pxwd')
-        local('tar -czf /tmp/%s.release.tgz  product-compose.yml nginx.conf   fabfile.py  readme.txt ' % PROJECT_NAME )
-        #上传代码
-        print blue("upload the tgz.")
-        print blue("*"*40)
-        put('/tmp/%s.release.tgz'%PROJECT_NAME, DEPLOY_PATH)
+@task
+@hosts('180.150.190.52:666','180.150.190.50:666')
+def test4():
+    local('ls')
+    run('pwd')
 
-        #备份线上代码,放到上层目录
-        run('pwd')
-        run('tar -czf ../%s.last.tgz  ./'% PROJECT_NAME)
-
-        #清除运行目录下的 all
-        #if 'yes'==prompt('clean  %s ? ' % PROJECT_PATH, default='yes|skip', validate=r'(yes|skip)'):
-        #   run('rm -rf *')
-
-        #解压新代码
-        run('tar -xf ../%s.release.tgz' % PROJECT_NAME)
-
-        run(""" sed -i 's/LOCAL_MODE = True/LOCAL_MODE = False/g' config.py """)
-
-        #重启server
-        #run('./check_server.sh restart', pty=False)
-        run('source ../bin/activate & supervisorctl  -c ../conf/upervisor.conf restart all', pty=False)
-        #run('supervisorctl  -c ../conf/upervisor.conf restart all', pty=False)
+def doSomething():
+    print "call internal func doSomething"

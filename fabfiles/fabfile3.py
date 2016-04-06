@@ -13,7 +13,7 @@ usage:  fab deploy  OR  fab -f fabfile.py deploy
 #env.hosts = ['10.166.138.153:36000', '10.177.151.158:36000']
 env.hosts = ['120.132.59.209:666']
 env.user = "xucb"
-#env.password = 'cmcom@secu'
+#env.password = 'xxx'
 
 DEPLOY_PATH = '/data/xucb/'
 PROJECT_NAME = 'hanzi_machine'

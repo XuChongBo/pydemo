@@ -1,0 +1,7 @@
+# for gitlab 
+Host git.zuoyetong.com.cn 
+HostName git.zuoyetong.com.cn
+Port 22222
+PreferredAuthentications publickey
+User xuchongbo
+IdentityFile ~/.ssh/id_rsa

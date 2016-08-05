@@ -19,3 +19,14 @@ with codecs.open(filepath, "r", 'utf-8') as myfile:
     line = sorted(set(line))
     with codecs.open("new.txt", "w", 'utf-8') as myfile:
         myfile.write(u"".join(line))
+
+
+# def read_handwriting(filepath):
+#     import codecs
+#     with codecs.open(filepath, "r", 'utf-8') as myfile:
+#         line =  myfile.readline()
+#     print "read from ",filepath, "total:",len(line)
+#     return line
+
+
+

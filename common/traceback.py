@@ -9,7 +9,8 @@ for i in range(8000):
         #shutil.copy(filepath, savefilepath); 
         1/0
         #Image.open(filepath).save(savefilepath , "PNG")
-    except :
+    except Exception, e:
+        print e
         print traceback.format_exc()
         raw_input('press any key to continue.')
     if i % 100 == 0:

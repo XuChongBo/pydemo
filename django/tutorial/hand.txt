@@ -1,0 +1,10 @@
+
+# 对django默认的user表进行restful api
+# from django.contrib.auth.models import User, Group
+
+django-admin.py startproject tutorial
+cd tutorial/
+django-admin.py startapp quickstart
+python manage.py migrate   #使用sqlsite
+python manage.py createsuperuser  
+

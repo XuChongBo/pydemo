@@ -1,0 +1,9 @@
+<h3>总样本数:{{total_count}}</h3>
+{% for idx,tag,tag_count,url in url_list  %}
+
+{% if idx%100==1 %}
+<h4>  第{{(idx-1)//100+1}}页 </h4>
+{% endif %}
+<a href="{{url}}" style="font-size:20px">{{tag}}{{tag_count}}</a>
+{% endfor %}
+<meta http-equiv="refresh" content="5"> <!-- Refresh every 15 minutes -->

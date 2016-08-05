@@ -1,0 +1,20 @@
+<a href="{{ next_page_url }}">Next Page</a>
+
+{% for filename, locate_url, delete_url in url_list  %}
+<div>
+    
+    <div>
+        <a href="{{locate_url}}" target="_blank"><img src={{locate_url}} border="2"> </a>
+    </div>
+        <a href="{{locate_url}}" target="_blank">{{filename}}</a>
+        <div>
+        <form class="icon" method="POST" action="{{delete_url}}">
+            <input id="page_url" name="page_url" value="{{page_url}}" type="hidden">            
+            <button onclick="return confirm('Are you sure you want to delete this record?');" >
+            Delete
+            </button>
+        </form>                        
+        </div>
+        <p></p>
+</div>
+{% endfor %}

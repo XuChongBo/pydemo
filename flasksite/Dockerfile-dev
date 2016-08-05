@@ -1,0 +1,17 @@
+FROM docker.zuoyetong.com.cn:8888/python:2.7
+MAINTAINER "XuChongBo <xcbfreedom@gmail.com>"
+
+
+VOLUME /logs
+VOLUME /appserver
+ADD ./requirements.txt /appserver/
+WORKDIR /appserver
+
+RUN pip install -r requirements.txt
+
+
+#RUN useradd -m -u 1000 xucb
+#USER xucb
+
+#CMD /usr/local/bin/gunicorn --access-logfile=/logs/gunicorn.access.log  --error-logfile=/logs/gunicorn.error.log -w4 -b0.0.0.0:9000 webapp:app 
+CMD python webapp.py > /logs/std.txt

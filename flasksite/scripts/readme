@@ -1,0 +1,3 @@
+ /usr/local/redis-3.0.6/src/redis-server
+
+python reset_data_in_redis.py /data/stroke_images/ ./handwriting.txt

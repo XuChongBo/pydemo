@@ -2,8 +2,8 @@
 # -*- coding:utf-8 -*-
 
 import os
-
 def walk_dir(root_dir):
+    root_dir = root_dir.rstrip("/")
     i = 0
     for root, dirs, files in os.walk(root_dir):
         for file in files:

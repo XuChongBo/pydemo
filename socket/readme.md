@@ -28,3 +28,25 @@ def mysend(self, msg):
 # 待确认问题
 
 broken pipe error 和 reset error
+
+# 
+#套在while中实现tcp长连接, 可以响应多次请求, 一旦一个请求出错,应该关掉连接,防止一错再错
+while server.conn:
+    try:
+        msg = server.read_obj()
+        logger.info("server: received: %s" % msg)
+        start_time = time.time()
+        server.speak2file(msg)
+        print " cost:%s ms" % int((time.time()-start_time)*1000)
+        server.send_obj(msg)
+    #except socket.timeout as e:   # 这里应该把当前conn关掉，因为timeout可能是send_obj发生的, continue回去调用read_obj 则双方死锁. 
+        #logger.debug("server: socket.timeout: %s" % e)
+        #continue
+    except ClinetClosedException as e:
+        logger.info("server: %s" % e)
+        server.close_connection()
+        break
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        server.close_connection()
+        break

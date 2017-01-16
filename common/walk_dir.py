@@ -6,10 +6,10 @@ def walk_dir(root_dir):
     root_dir = root_dir.rstrip("/")
     i = 0
     for root, dirs, files in os.walk(root_dir):
-        for file in files:
-            if file.endswith('.gif'):
+        for filename in files:
+            if filename.endswith('.gif'):
                 i += 1
-                image_path = os.path.join(root, file)
+                image_path = os.path.join(root, filename)
                 print i, image_path
                 try:
                     #Image.open(image_path).save(savefilepath , "JPEG")

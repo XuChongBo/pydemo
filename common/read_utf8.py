@@ -14,11 +14,12 @@ f  = open(descFilePath.encode("utf-8"), "r")
 ##############
 
 with codecs.open(filepath, "r", 'utf-8') as myfile:
-    line =  myfile.readline()
-    print len(line)
-    line = sorted(set(line))
-    with codecs.open("new.txt", "w", 'utf-8') as myfile:
-        myfile.write(u"".join(line))
+    #line =  myfile.readline()
+    #print len(line)
+    #line = sorted(set(line))
+    for line in myfile:
+        with codecs.open("new.txt", "w", 'utf-8') as myfile:
+            myfile.write(u"".join(line))
 
 
 # def read_handwriting(filepath):

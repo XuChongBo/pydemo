@@ -9,6 +9,7 @@ from pylab import imshow,show,axis
 
 img = Image.open(sys.argv[1])
 #img = Image.open('../../data/cv_data/empire.jpg')
+print img.width, img.height
 img.show()
 # plot the image
 imshow(img)

@@ -13,6 +13,7 @@ print type(img)
 print img.mode
 img.show()
 img = np.array(img)
+print " as array: "
 print type(img)
 print img.shape, img.dtype, 
 

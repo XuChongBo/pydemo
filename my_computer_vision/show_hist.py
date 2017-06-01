@@ -3,10 +3,13 @@ from PIL import Image
 from pylab import imshow,axis,contour,axis, figure,gray,hist,show
 from numpy import array
 from pylab import subplot,plot
-
+import sys
 # load the image file
-img = Image.open('../../data/cv_data/empire.jpg')
-img_gray = img.convert('L')
+img = Image.open(sys.argv[1])
+#img = Image.open('out.png')
+#img_gray = img.convert('L')
+img_gray = img
+
 
 def get_statistic(img_gray):
     """
@@ -24,6 +27,9 @@ def get_statistic(img_gray):
 
 #-------  Method 1 ---------------------------------
 h = get_statistic(img_gray)    
+for i, e in enumerate(h):
+   if e != 0:
+    print i, e
 # create a new figure
 figure();   
 subplot(1,2,1)

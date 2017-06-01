@@ -4,8 +4,10 @@ import os
 import stat
 import fcntl
 import time
-from lock import ExLock
+from file_lock import ExLock
 
-with ExLock("doc2pdf2swf"):
-    print "got it"
-    time.sleep(10)
+try:
+    with ExLock("doc2pdf2swf"):
+        print "got it"
+except LockException as e:
+    print e

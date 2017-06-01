@@ -2,8 +2,11 @@ from PIL import Image
 from pylab import imshow,show,axis,array
 
 # load the image file
-img = Image.open('../../data/cv_data/empire.jpg')
+img = Image.open('test.jpg')
 print 'loaded from  file: ',img
+print  'h:', img.height, 'w:', img.width
+width, height = img.size
+print 'h:',height, 'w:',width
 
 img_array = array(img) 
 print 'convert to array: ', img_array.shape, img_array.dtype

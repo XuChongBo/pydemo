@@ -14,14 +14,14 @@ from PIL import Image
 #'[%(asctime)-15s][%(levelname)s][%(module)s][%(funcName)s] %(message)s'
 
 
-if 0:
+if 1:
     logging.basicConfig(
          stream=sys.stdout,
          level=logging.DEBUG,
          format='[%(asctime)s] [%(name)s] [%(levelname)s]:\t%(message)s')
     logger = logging.getLogger('log')
 
-else:
+elif 0:
     # 使用一个名字为abc的logger
     logger = logging.getLogger('log')
     # 设置logger的level为DEBUG
@@ -32,6 +32,8 @@ else:
     hdr.setFormatter(formatter)
     # 给logger添加上handler
     logger.addHandler(hdr)
+else:
+    logger = logging.getLogger('log')
 
 logger.info("hel")
 logger.debug("hel")

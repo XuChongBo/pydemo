@@ -55,3 +55,6 @@ def traceit(frame, event, arg):
 
 sys.settrace(traceit)
 main()
+print "unset strace"
+sys.settrace(None)
+main()

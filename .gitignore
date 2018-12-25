@@ -4,6 +4,7 @@
 *.pdf
 *.svg
 *.png
+.DS_Store
 
 *.png
 .ipynb_checkpoints

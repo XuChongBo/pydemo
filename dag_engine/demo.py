@@ -14,13 +14,18 @@ if __name__ == '__main__':
 
 #@graph.register(inputs=['d', 'a', {'x':100}, {'y':10}], outputs=['e'])
     def f_my_function3(d, a, x, y):
-        print(y)
+#def f_my_function3(*args, **kwargs):
+#print args, kwargs
+#y = kwargs['y']
+        print(d, a, y)
         return d - a + x
 
     graph.add_node(f_my_function3, inputs=['d', 'a', {'x':100}, {'y':10}], outputs=['e'])
 
     @graph.register(inputs=['c'], outputs=['d'])
-    def f_my_function2(c):
+    def f_my_function2(*args):
+        print 'args:', (args)
+        c = args[0]
         return c / 10.
 
     res = graph.calculate(data={'a': 2, 'b': 3})
